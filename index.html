@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CropMarket App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>🌾 CropMarket</h1>
+    <button id="themeToggle" aria-label="Toggle dark mode">Toggle Theme</button>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Market Price Search</h2>
+      <p class="sub">Type crop + district, or use voice search.</p>
+      <div class="row">
+        <input id="cropInput" placeholder="Crop (e.g., Wheat / गेहूं)" />
+        <button id="voiceBtn">🎤</button>
+      </div>
+      <input id="districtInput" placeholder="District (e.g., Pune)" />
+      <div class="row">
+        <button id="searchBtn">Search Price</button>
+        <button id="retryBtn" class="secondary">Retry</button>
+      </div>
+      <p id="status" class="status">Idle</p>
+      <div id="result" class="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Watchlist & Alerts</h2>
+      <p class="sub">Alert when price increase ≥10% from last known value.</p>
+      <div class="row">
+        <input id="watchCrop" placeholder="Crop" />
+        <input id="watchDistrict" placeholder="District" />
+      </div>
+      <button id="addWatch">Add to Watchlist</button>
+      <ul id="watchlist"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Land Unit Converter</h2>
+      <div class="row">
+        <input id="unitValue" type="number" placeholder="Value" />
+        <select id="fromUnit">
+          <option value="acre">Acre</option>
+          <option value="hectare">Hectare</option>
+          <option value="bigha">Bigha</option>
+          <option value="kanal">Kanal</option>
+          <option value="guntha">Guntha</option>
+        </select>
+        <span>→</span>
+        <select id="toUnit">
+          <option value="hectare">Hectare</option>
+          <option value="acre">Acre</option>
+          <option value="bigha">Bigha</option>
+          <option value="kanal">Kanal</option>
+          <option value="guntha">Guntha</option>
+        </select>
+      </div>
+      <button id="convertBtn">Convert</button>
+      <p id="convertOut" class="result"></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
