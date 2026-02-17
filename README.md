@@ -1,18 +1,22 @@
-# CropMarket
+# CropMarket Android App
 
-A lightweight front-end app prototype for farmers with:
+This repository now contains an actual Android application (Kotlin + XML + ViewModel + LiveData).
 
-- Crop price search with normalization and district fallback.
-- Retry behavior and explicit status messaging.
-- Watchlist with 10% surge alert indicator.
-- Dark mode toggle.
-- Voice input (STT) for crop search (browser support dependent).
-- Land unit converter (Bigha/Kanal/Guntha/Acre/Hectare).
+## Features implemented
+- Market price lookup with crop normalization and district fallback.
+- Retry last query behavior.
+- Watchlist capture for crop + district + price snapshot.
+- Land unit converter (Acre/Hectare/Bigha/Kanal/Guntha).
 
-## Run locally
+## Project structure
+- `app/` Android application module
+- `app/src/main/java/com/cropmarket/` Activity + ViewModel
+- `app/src/main/res/layout/activity_main.xml` main UI
+
+## Build
 
 ```bash
-python3 -m http.server 4173
+gradle assembleDebug
 ```
 
-Then open: `http://localhost:4173`
+> Note: Requires Android SDK configured via `ANDROID_HOME`/`ANDROID_SDK_ROOT`.

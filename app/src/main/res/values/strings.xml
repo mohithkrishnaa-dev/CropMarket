@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CropMarket</string>
+    <string name="watchlist_empty">No items in watchlist</string>
+    <string name="invalid_input">Enter a valid number.</string>
+</resources>
