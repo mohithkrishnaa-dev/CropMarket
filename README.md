@@ -53,3 +53,18 @@ git push origin v1.0.0
 ```
 
 4. Open the **Releases** page in GitHub; the APK will be attached automatically.
+
+## Can't see files on GitHub?
+
+If GitHub still shows only the initial commit, your local commits are not pushed yet.
+
+Run:
+
+```bash
+git log --oneline -5
+git remote -v
+```
+
+Then follow the full guide:
+
+- [`docs/github-sync-troubleshooting.md`](docs/github-sync-troubleshooting.md)
