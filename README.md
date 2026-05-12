@@ -110,11 +110,9 @@ REACT_APP_MAPS_API_KEY=your_google_maps_or_mapbox_key
 # Optional: Custom TTS Engine (if not using browser default)
 REACT_APP_TTS_API_KEY=your_tts_service_key
 
-🎙️ Voice Features Setup
+## 🎙️ Voice Features Setup
 The app uses the Web Speech API for voice capabilities:
 Voice Input (SpeechRecognition)
-JavaScript
-Copy
 // Example: Activating voice search
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'hi-IN'; // Hindi
@@ -123,7 +121,7 @@ recognition.onresult = (event) => {
   // Process farmer's spoken query
 };
 recognition.start();
-Voice Output (SpeechSynthesis)
+## Voice Output (SpeechSynthesis)
 // Example: Reading market prices aloud
 const utterance = new SpeechSynthesisUtterance("Wheat price in Punjab is ₹2,150 per quintal");
 utterance.lang = 'hi-IN';
@@ -133,7 +131,6 @@ speechSynthesis.speak(utterance);
 🚢 Deployment
 # Build for production
 npm run build
-
 # Deploy to Netlify
 netlify deploy --prod
 
