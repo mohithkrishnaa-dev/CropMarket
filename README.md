@@ -1,243 +1,159 @@
-# CropMarket Android App
+# 🌾 CropMarket
 
-CropMarket is a native Android app prototype focused on helping farmers make better market decisions quickly.
-It includes commodity price lookup, fallback handling for missing district data, watchlist support, and useful farm utilities.
+&gt; Smart farming decisions powered by real-time government data — now with voice support
 
----
+CropMarket is a voice-enabled, multilingual web application built for Indian farmers. It integrates official government agricultural market data (Agmarknet/eNAM), real-time weather from OpenWeatherMap, curated government farming news, and full voice input/output support — so farmers can access critical information hands-free while working in the fields.
 
-## Table of Contents
+## 🚀 Live Demo
 
-- [Project Vision](#project-vision)
-- [Current Features](#current-features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Build and Run](#build-and-run)
-- [APK Release Process](#apk-release-process)
-- [GitHub Actions CI/CD](#github-actions-cicd)
-- [Signing Configuration (Optional)](#signing-configuration-optional)
-- [Troubleshooting](#troubleshooting)
-- [Roadmap](#roadmap)
-- [License](#license)
+**[https://cropmarketapp.netlify.app/](https://cropmarketapp.netlify.app/)**
 
 ---
 
-## Project Vision
+## ✨ Features
 
-The app aims to provide reliable mandi price visibility and practical decision-support tools for farmers, with an emphasis on:
+### 📡 Agmarknet / eNAM Market Data
+- Real-time crop prices from government-regulated mandis
+- Coverage for **all Indian states**
+- Daily arrivals, price trends, and commodity-wise listings
+- Direct integration with Government of India agricultural data APIs
 
-- fast crop price lookup
-- resilient fallback behavior when district-specific data is missing
-- simple UX for low-tech environments
-- scalable Android architecture for future modules
+### 🌦️ OpenWeatherMap Integration
+- Live weather forecasts and hyper-local conditions
+- Rainfall predictions, temperature trends, and humidity alerts
+- Extreme weather warnings (heatwaves, storms, floods)
+- 5-day forecast for farm planning
 
----
+### 📰 Government Farming News
+- Curated news from official government agriculture portals
+- Updates on PM-KISAN, crop insurance, MSP announcements, and new schemes
+- State-wise and national agricultural policy updates
 
-## Current Features
+### 🎙️ Voice Input (Speech Recognition)
+- Farmers can **speak commands and queries** instead of typing
+- Supports natural language queries like:
+  - *"What is the price of wheat in Punjab today?"*
+  - *"Show nearby markets"*
+  - *"What's the weather tomorrow?"*
+- Powered by Web Speech API
 
-### 1) Market Price Lookup
-- Search by crop + district
-- Crop alias normalization (example: `Wheat`, `गेहूं` → `WHEAT`)
-- District-specific pricing with automatic general fallback
+### 🔊 Voice Output (Text-to-Speech)
+- All content can be **read aloud** — prices, weather, news, market details
+- Farmers can **listen while working** in fields or driving
+- Multilingual TTS support (Hindi, Telugu, Tamil, English)
+- Adjustable speech rate and volume
 
-### 2) Retry Behavior
-- Retry previous query from the UI without re-entering values
+### 💰 Fare Calculation
+- Estimate transportation costs to carry produce to mandis
+- Compare fares across multiple nearby markets
+- Factor in distance, vehicle type, and fuel costs
 
-### 3) Watchlist Snapshot
-- Add crop + district to watchlist
-- Stores current snapshot text for quick tracking
+### 📍 Nearby Markets
+- GPS-based discovery of nearby Agmarknet-registered mandis
+- Distance, directions, and live commodity prices for each market
+- Filter by crop type and active trading hours
 
-### 4) Land Unit Converter
-- Converts among:
-  - Acre
-  - Hectare
-  - Bigha
-  - Kanal
-  - Guntha
+### 🌱 Crop Life Cycle
+- Stage-by-stage guidance: sowing → growth → harvesting → post-harvest
+- Timely alerts for irrigation, fertilization, and pest control
+- Crop-specific best practices
 
----
-
-## Tech Stack
-
-- **Language:** Kotlin
-- **UI:** XML layouts + Material Components
-- **Architecture:** ViewModel + LiveData
-- **Build:** Gradle (Android application module)
-- **CI/CD:** GitHub Actions (debug artifact + tag-based release APK)
-
----
-
-## Architecture
-
-### MainActivity
-Handles UI binding, click listeners, and observing view state.
-
-### MainViewModel
-Contains business logic for:
-- crop normalization
-- market price fallback logic
-- watchlist data updates
-- unit conversion
-
-This keeps logic separated from Activity lifecycle/UI concerns.
+### 🌍 Multilingual Interface
+| Code | Language | Voice Support |
+|------|----------|---------------|
+| EN   | English  | ✅ TTS + Voice Input |
+| HI   | Hindi    | ✅ TTS + Voice Input |
+| TE   | Telugu   | ✅ TTS + Voice Input |
+| TA   | Tamil    | ✅ TTS + Voice Input |
 
 ---
 
-## Project Structure
+## 🛠️ Tech Stack
 
-```text
-CropMarket/
-├── app/
-│   ├── build.gradle
-│   └── src/main/
-│       ├── AndroidManifest.xml
-│       ├── java/com/cropmarket/
-│       │   ├── MainActivity.kt
-│       │   └── MainViewModel.kt
-│       └── res/
-│           ├── layout/activity_main.xml
-│           ├── values/strings.xml
-│           ├── values/themes.xml
-│           └── xml/
-├── .github/workflows/
-│   ├── android-ci.yml
-│   └── android-release.yml
-├── docs/
-│   ├── github-sync-troubleshooting.md
-│   └── next-steps-roadmap.md
-├── build.gradle
-├── settings.gradle
-└── gradle.properties
-```
+| Layer | Technology |
+|-------|------------|
+| Frontend | React / Modern JavaScript Framework |
+| Styling | Tailwind CSS / CSS Modules |
+| Market Data API | Agmarknet / eNAM (Government of India) |
+| Weather API | OpenWeatherMap API |
+| News Source | Government Agriculture Portals / RSS Feeds |
+| Voice (Input) | Web Speech API - SpeechRecognition |
+| Voice (Output) | Web Speech API - SpeechSynthesis |
+| Maps / Location | Geolocation API + Map Integration |
+| i18n | React-i18next with RTL support |
+| Deployment | Netlify (CI/CD + Global CDN) |
 
 ---
 
-## Getting Started
+## 📦 Installation
+# Clone the repository
+git clone https://github.com/yourusername/cropmarket.git
+# Navigate to project directory
+cd cropmarket
+# Install dependencies
+npm install
+# Set up environment variables
+cp .env.example .env
+# Start development server
+npm run
+🔧 Environment Variables
+# Agmarknet / eNAM Government API
+REACT_APP_AGMARKNET_API_KEY=your_agmarknet_key
+REACT_APP_ENAM_API_URL=https://enam.gov.in/web/
+# OpenWeatherMap
+REACT_APP_OPENWEATHER_API_KEY=your_openweather_api_key
+REACT_APP_OPENWEATHER_URL=https://api.openweathermap.org/data/2.5/
+# Government News / RSS Feeds
+REACT_APP_GOV_NEWS_RSS=https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&SectionId=1
+# Maps / Geolocation (for Nearby Markets)
+REACT_APP_MAPS_API_KEY=your_google_maps_or_mapbox_key
+# Optional: Custom TTS Engine (if not using browser default)
+REACT_APP_TTS_API_KEY=your_tts_service_key
 
-### Prerequisites
+🎙️ Voice Features Setup
+The app uses the Web Speech API for voice capabilities:
+Voice Input (SpeechRecognition)
+JavaScript
+Copy
+// Example: Activating voice search
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = 'hi-IN'; // Hindi
+recognition.onresult = (event) => {
+  const transcript = event.results[0][0].transcript;
+  // Process farmer's spoken query
+};
+recognition.start();
+Voice Output (SpeechSynthesis)
+// Example: Reading market prices aloud
+const utterance = new SpeechSynthesisUtterance("Wheat price in Punjab is ₹2,150 per quintal");
+utterance.lang = 'hi-IN';
+utterance.rate = 0.9; // Slightly slower for clarity
+speechSynthesis.speak(utterance);
 
-Install and configure:
+🚢 Deployment
+# Build for production
+npm run build
 
-- Android Studio (latest stable recommended)
-- Android SDK Platform 34
-- JDK 17 (recommended for AGP compatibility)
-- Git
+# Deploy to Netlify
+netlify deploy --prod
 
-Set one of these environment variables:
-- `ANDROID_HOME`
-- `ANDROID_SDK_ROOT`
+🤝 Contributing
+We welcome contributions! Priority areas:
+More Languages: Marathi, Kannada, Bengali, Gujarati, Punjabi
+Offline Voice: Pre-recorded audio for low-connectivity areas
+AI Crop Doctor: Voice-based crop disease identification
+WhatsApp Integration: Share market prices via voice messages
 
----
+📄 License
+MIT License —
 
-## Build and Run
+🙏 Acknowledgments
+Market data powered by Agmarknet & eNAM, Government of India
+Weather data by OpenWeatherMap
+News sourced from official government agriculture portals
+Built for Indian farmers who deserve technology that speaks their language.
 
-### In Android Studio
-1. Open project root (`CropMarket/`)
-2. Let Gradle sync finish
-3. Run app on emulator/device
-
-### Command line
-
-```bash
-gradle :app:assembleDebug
-```
-
-Expected debug APK output:
-
-```text
-app/build/outputs/apk/debug/app-debug.apk
-```
-
----
-
-## APK Release Process
-
-> I cannot directly publish to your GitHub account from this environment, but the repository is prepared so **you can release with a tag** once pushed.
-
-### Step 1: Push project to GitHub
-
-If not already configured:
-
-```bash
-git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO>.git
-git push -u origin work
-```
-
-Then merge `work` into `main` (PR recommended).
-
-### Step 2: Create a release tag
-
-```bash
-git checkout main
-git pull
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-### Step 3: Download APK from GitHub
-
-- Open **Actions** → `Android Release APK`
-- Open **Releases** → release `v1.0.0`
-- Download attached APK asset
-
----
-
-## GitHub Actions CI/CD
-
-### 1) `android-ci.yml`
-- Runs on pushes and PRs
-- Builds debug APK
-- Uploads debug APK artifact
-
-### 2) `android-release.yml`
-- Runs on tags matching `v*`
-- Builds release APK
-- Optionally signs APK if secrets are configured
-- Publishes GitHub Release with APK attached
-
----
-
-## Signing Configuration (Optional)
-
-For signed release APKs, add repository secrets:
-
-- `ANDROID_KEYSTORE_BASE64`
-- `ANDROID_KEY_ALIAS`
-- `ANDROID_KEYSTORE_PASSWORD`
-- `ANDROID_KEY_PASSWORD`
-
-If secrets are missing, workflow still publishes unsigned release APK.
-
----
-
-## Troubleshooting
-
-### I can’t see new files on GitHub
-Follow:
-- [`docs/github-sync-troubleshooting.md`](docs/github-sync-troubleshooting.md)
-
-### Gradle/JDK mismatch
-Use JDK 17 and re-sync. If CLI build fails, check:
-
-```bash
-java -version
-gradle -v
-```
-
-### APK not in release
-Confirm tag pattern is `v*` (example: `v1.0.0`) and workflow succeeded.
-
----
-
-## Roadmap
-
-Planned modules and phased delivery notes are in:
-
-- [`docs/next-steps-roadmap.md`](docs/next-steps-roadmap.md)
-
----
-
-## License
-
-This project is licensed under **GPL-3.0**. See [`LICENSE`](LICENSE).
+<p align="center">
+  🚜 Made with ❤️ for India's farming community 🌾<br>
+  <em>Because every farmer deserves to hear the price of their crop.</em>
+</p>
